@@ -1,3 +1,5 @@
+import { LovableTheme } from 'src/Ventyra/lovable/v1/src/theme'
+
 const breakpoints = {
   xs: 480,
   sm: 768,
@@ -65,17 +67,7 @@ const backgrounds = {
 }
 
 export const theme = {
-  colors,
   backgrounds,
-  breakpoints,
-
-  fontSizes: {
-    xs: '12px',
-    sm: '14px',
-    md: '16px',
-    lg: '18px',
-    xl: '20px',
-  },
 
   spacing: {
     xs: '4px',
@@ -83,19 +75,6 @@ export const theme = {
     md: '12px',
     lg: '16px',
     xl: '24px',
-  },
-
-  radii: {
-    sm: '4px',
-    md: '6px',
-    lg: '8px',
-    full: '9999px',
-  },
-
-  shadows: {
-    sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
-    md: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    focus: '0 0 0 3px rgba(37, 99, 235, 0.1)',
   },
 
   transitions: {
@@ -112,7 +91,44 @@ export const theme = {
     popover: 1100,
     tooltip: 1200,
   },
-}
+
+  ...LovableTheme,
+
+  colors: {
+    ...colors,
+    ...LovableTheme.colors,
+    text: colors.text,
+  },
+
+  breakpoints: {
+    ...breakpoints,
+    ...LovableTheme.breakpoints,
+  },
+
+  fontSizes: {
+    // xs: '12px',
+    // sm: '14px',
+    // md: '16px',
+    // lg: '18px',
+    // xl: '20px',
+    ...LovableTheme.fontSizes,
+  },
+
+  radii: {
+    // sm: '4px',
+    // md: '6px',
+    // lg: '8px',
+    full: '9999px',
+    ...LovableTheme.radii,
+  },
+
+  shadows: {
+    // sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
+    // md: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    focus: '0 0 0 3px rgba(37, 99, 235, 0.1)',
+    ...LovableTheme.shadows,
+  },
+} as const
 
 export type Theme = typeof theme
 

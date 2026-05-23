@@ -26,8 +26,10 @@ export const minWidth = Object.keys(theme['breakpoints']).reduce(
         cssString = args
       }
 
+      const point = theme['breakpoints'][label]
+
       return css`
-        @media (min-width: ${theme['breakpoints'][label]}px) {
+        @media (min-width: ${point}${typeof point === 'number' ? 'px' : ''}) {
           ${cssString};
         }
       `
