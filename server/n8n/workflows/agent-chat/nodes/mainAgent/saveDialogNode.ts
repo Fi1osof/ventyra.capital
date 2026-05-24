@@ -46,6 +46,7 @@ return items.map(item => {
     type: 'n8n-nodes-base.executeWorkflow',
     typeVersion: 1.2,
     position: [2870, -550],
+    onError: 'continueErrorOutput',
     parameters: {
       workflowId: {
         __rl: true,
