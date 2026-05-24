@@ -64,6 +64,7 @@ import {
   TrustTextStyled,
   BrowseAllStyled,
 } from './styles'
+import Link from 'next/link'
 
 /* Hero illustrative graph — pure SVG, no AI text issues */
 const HeroGraph: React.FC = () => (
@@ -239,6 +240,8 @@ export const HomePage: React.FC = () => {
                   variant="primary"
                   size="lg"
                   iconRight={<FiArrowRight size={16} />}
+                  as={Link}
+                  href="/projects/create"
                 >
                   Start AI Interview
                 </Button>

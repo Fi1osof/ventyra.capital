@@ -1,6 +1,12 @@
 import type { IconType } from 'react-icons'
 
-export type CreateProjectStage = 'intro' | 'interview' | 'review'
+// export type CreateProjectStage = 'intro' | 'interview' | 'review'
+
+export enum CreateProjectSection {
+  Intro = 'intro',
+  Interview = 'interview',
+  Review = 'review',
+}
 
 export type ChatRole = 'ai' | 'user'
 
