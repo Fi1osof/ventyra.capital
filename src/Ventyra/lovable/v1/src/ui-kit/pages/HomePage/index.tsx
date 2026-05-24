@@ -64,7 +64,7 @@ import {
   TrustTextStyled,
   BrowseAllStyled,
 } from './styles'
-import Link from 'next/link'
+import { useOpenChatWithMessage } from 'src/components/Chat/hooks/useOpenChatWithMessage'
 
 /* Hero illustrative graph — pure SVG, no AI text issues */
 const HeroGraph: React.FC = () => (
@@ -216,6 +216,8 @@ const HeroGraph: React.FC = () => (
 )
 
 export const HomePage: React.FC = () => {
+  const onClickApply = useOpenChatWithMessage()
+
   return (
     <>
       {/* HERO */}
@@ -240,8 +242,12 @@ export const HomePage: React.FC = () => {
                   variant="primary"
                   size="lg"
                   iconRight={<FiArrowRight size={16} />}
-                  as={Link}
-                  href="/projects/create"
+                  // as={Link}
+                  // href="/projects/create"
+                  onClick={onClickApply}
+                  value={`I want help understanding and shaping a project idea.
+
+Please guide me through the process, ask questions, identify missing pieces, and help evaluate the project's potential.`}
                 >
                   Start AI Interview
                 </Button>

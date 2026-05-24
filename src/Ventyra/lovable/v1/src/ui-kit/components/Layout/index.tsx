@@ -10,7 +10,7 @@ import { LayoutStyled, LayoutMainStyled } from './styles'
 import type { LayoutProps } from './types'
 import { useAppContext } from 'src/components/AppContext'
 import { UserLink } from 'src/components/Link/User'
-import Link from 'next/link'
+import { useOpenChatWithMessage } from 'src/components/Chat/hooks/useOpenChatWithMessage'
 
 const NAV_ITEMS = [
   { label: 'Portfolio', href: '/portfolio' },
@@ -59,9 +59,19 @@ const FOOTER_COLUMNS = [
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { user: currentUser, openLoginForm } = useAppContext()
 
+  const onClickApply = useOpenChatWithMessage()
+
   const headerActions = (
     <>
-      <Button variant="primary" size="sm" as={Link} href="/projects/create">
+      <Button
+        variant="primary"
+        size="sm"
+        // as={Link} href="/projects/create"
+        onClick={onClickApply}
+        value={`I want help understanding and shaping a project idea.
+
+Please guide me through the process, ask questions, identify missing pieces, and help evaluate the project's potential.`}
+      >
         Apply for funding
       </Button>
       {currentUser ? (
