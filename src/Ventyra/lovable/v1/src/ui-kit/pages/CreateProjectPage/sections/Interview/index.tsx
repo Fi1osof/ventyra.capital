@@ -1,5 +1,8 @@
 import { Text } from '@/ui-kit/components/Typography'
 
+// TODO Make partial import
+import * as icons from 'react-icons/fa6'
+
 import {
   InterviewLayoutStyled,
   SidebarStyled,
@@ -277,12 +280,14 @@ export const CreateProjectInterviewSection: React.FC<
                   {section.label}
                 </SectionHeadStyled>
                 {props.map((prop) => {
-                  const PropIcon = prop.icon
+                  const iconName = prop.icon
                   const v = visibleCollected[prop.id]
                   const hasValue = Boolean(v?.value)
                   const score = v?.score ?? 0
                   const isActive =
                     preview === 'live' && prop.id === currentPropId
+
+                  const Icon = (iconName && icons[iconName]) || undefined
                   return (
                     <PropertyRowStyled
                       key={prop.id}
@@ -292,7 +297,7 @@ export const CreateProjectInterviewSection: React.FC<
                       title={v?.value ?? prop.exampleAnswer}
                     >
                       <PropertyIconStyled $score={score} $hasValue={hasValue}>
-                        <PropIcon size={11} />
+                        {Icon && <Icon size={11} />}
                       </PropertyIconStyled>
                       <PropertyLabelStyled>
                         <PropertyLabelTopStyled>

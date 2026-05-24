@@ -1,5 +1,9 @@
 import type { IconType } from 'react-icons'
 
+import * as icons from 'react-icons/fa6'
+
+type IconName = keyof typeof icons
+
 // export type CreateProjectStage = 'intro' | 'interview' | 'review'
 
 export enum CreateProjectSection {
@@ -76,7 +80,8 @@ export type PropertySchema = {
   section: SectionId
   label: string
   required: boolean
-  icon: IconType
+  // icon: IconType
+  icon: IconName | undefined
   /** AI question example */
   question: string
   /** What a real answer looks like (used as placeholder & in tooltips) */
