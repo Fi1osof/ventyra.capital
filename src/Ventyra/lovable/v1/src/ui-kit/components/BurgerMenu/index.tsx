@@ -94,37 +94,40 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({
 
       <BackdropStyled $open={isOpen} aria-hidden />
 
-      <MobilePanelStyled
-        ref={panelRef}
-        $open={isOpen}
-        role="dialog"
-        aria-modal="true"
-        aria-hidden={!isOpen}
-      >
-        <MobilePanelHeaderStyled>
-          <span style={{ fontWeight: 600 }}>Menu</span>
-          <MobileCloseStyled
-            onClick={useCallback(() => setIsOpen(false), [])}
-            aria-label="Close menu"
-          >
-            <FiX size={20} />
-          </MobileCloseStyled>
-        </MobilePanelHeaderStyled>
-        <MobileNavStyled>
-          {items.map((item) => (
-            <MobileNavLinkStyled
-              key={item.label}
-              href={item.href}
-              $active={item.active}
+      {isOpen && (
+        <MobilePanelStyled
+          ref={panelRef}
+          $open={isOpen}
+          role="dialog"
+          aria-modal="true"
+          aria-hidden={!isOpen}
+        >
+          <MobilePanelHeaderStyled>
+            <span style={{ fontWeight: 600 }}>Menu</span>
+            <MobileCloseStyled
               // eslint-disable-next-line react/jsx-no-bind
               onClick={() => setIsOpen(false)}
+              aria-label="Close menu"
             >
-              {item.label}
-            </MobileNavLinkStyled>
-          ))}
-        </MobileNavStyled>
-        {actions && <MobileActionsStyled>{actions}</MobileActionsStyled>}
-      </MobilePanelStyled>
+              <FiX size={20} />
+            </MobileCloseStyled>
+          </MobilePanelHeaderStyled>
+          <MobileNavStyled>
+            {items.map((item) => (
+              <MobileNavLinkStyled
+                key={item.label}
+                href={item.href}
+                $active={item.active}
+                // eslint-disable-next-line react/jsx-no-bind
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </MobileNavLinkStyled>
+            ))}
+          </MobileNavStyled>
+          {actions && <MobileActionsStyled>{actions}</MobileActionsStyled>}
+        </MobilePanelStyled>
+      )}
     </BurgerMenuRootStyled>
   )
 }
