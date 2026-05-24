@@ -56,7 +56,7 @@ import { Button } from '@/ui-kit/components/Button'
 import { FaPaperPlane, FaRobot, FaStop } from 'react-icons/fa'
 import { Badge } from '@/ui-kit/components/Badge'
 
-type CreateProjectInterviewSectionProps = {
+export type CreateProjectInterviewSectionProps = {
   setStage: (stage: CreateProjectSection) => void
 
   filledAllCount: number
@@ -99,6 +99,10 @@ export const CreateProjectInterviewSection: React.FC<
   }
 
   /** Deterministic pseudo-positive score for live-filled properties. */
+  // TODO Remove
+  /**
+   * @deprecated
+   */
   function mockScoreForAnswer(answer: string, propId: PropertyId): number {
     // Negative cues from text
     const negative =
@@ -143,6 +147,7 @@ export const CreateProjectInterviewSection: React.FC<
           ...prev,
           [currentProp.id]: {
             value: trimmed,
+            // eslint-disable-next-line @typescript-eslint/no-deprecated
             score: mockScoreForAnswer(trimmed, currentProp.id),
           },
         }))
