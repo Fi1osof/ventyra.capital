@@ -14,6 +14,7 @@ import {
   getMemoryRecallNodes,
   getMemoryRecallConnections,
 } from 'server/n8n/workflows/agent-factory/tools/memoryRecall'
+import { getSaveDialogNodes } from './saveDialogNode'
 
 type GetMainAgentProps = {
   config: AgentFactoryConfig
@@ -85,9 +86,15 @@ export function getMainAgent({
     ? getMemoryRecallConnections({ agentId, agentName })
     : {}
 
+  const saveDialogNodes = getSaveDialogNodes({
+    agentId,
+    agentName,
+  })
+
   const nodes: NodeType[] = [
     prepareAgentInputNode,
     agentNode,
+    ...saveDialogNodes,
     ...codeExecutionNodes,
     ...memoryRecallNodes,
   ]

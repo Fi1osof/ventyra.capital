@@ -305,6 +305,27 @@ return {
 
     return workflows
   }
+
+  upgradeMainWorkflow(
+    workflow: WorkflowBase,
+    config: AgentFactoryConfig,
+  ): void {
+    super.upgradeMainWorkflow(workflow, config)
+
+    const { agentId, agentName } = config
+
+    workflow.connections[agentName].main
+      ?.at(0)
+      ?.push({
+        node: `Prepare Save Dialog (${agentId})`,
+        type: 'main',
+        index: 0,
+      })
+
+    workflow.connections[`Prepare Save Dialog (${agentId})`] = {
+      main: [[{ node: `Save Dialog (${agentId})`, type: 'main', index: 0 }]],
+    }
+  }
 }
 
 export default ChatAgentWorkflow

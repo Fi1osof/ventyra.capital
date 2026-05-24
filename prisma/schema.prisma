@@ -68,6 +68,9 @@ model User {
   referrerId String? @db.VarChar(36)
   Files      File[]
 
+  VentyraChatMessagesOutcome VentyraChatMessage[] @relation(name: "VentyraChatMessageFromUser")
+  VentyraChatMessagesIncome  VentyraChatMessage[] @relation(name: "VentyraChatMessageToUser")
+
   @@unique([email])
   @@unique([username])
 }
@@ -933,4 +936,23 @@ model PostRevision {
 
   @@index([postId])
   @@index([createdAt])
+}
+
+model VentyraChatMessage {
+  id        String   @id @default(cuid()) @db.VarChar(36)
+  createdAt DateTime @default(now()) @db.Timestamp(3)
+
+  fromUserId String? @db.VarChar(36)
+  FromUser   User?   @relation(fields: [fromUserId], references: [id], name: "VentyraChatMessageFromUser")
+
+  toUserId String? @db.VarChar(36)
+  ToUser   User?   @relation(fields: [toUserId], references: [id], name: "VentyraChatMessageToUser")
+
+  content String @db.Text
+
+  // parentId String? @db.VarChar(36)
+
+  sessionId String? @db.VarChar(100)
+
+  @@index([fromUserId, toUserId, sessionId])
 }

@@ -1,0 +1,3 @@
+mutation ventyraSaveDialog($data: VentyraDialogCreateInput!) {
+  ventyraSaveDialog(data: $data)
+}
